@@ -7,9 +7,9 @@ class App extends Component {
   render() {
     return (
       <main>
-        <switch>
+        <Switch>
           <Route path="/" component={Login}></Route>
-        </switch>
+        </Switch>
       </main>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import log_ico from "./assets/log.svg";
-import reg_ico from "./assets/register.svg";
+import "./login.css";
+import log_ico from "../assets/log.svg";
+import reg_ico from "../assets/register.svg";
 class Login extends Component {
   state = {
     signup_mode: false,

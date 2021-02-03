@@ -153,3 +153,7 @@ h1 {
 .column.right {
   background-color: rgb(56, 52, 85);
 }
+
+.timer-text {
+  font-size: 60px;
+}

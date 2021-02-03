@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+
 import "./test.css";
 
 class Test extends Component {
@@ -16,13 +18,24 @@ class Test extends Component {
       <div classNameName="body">
         <div className="info">
           <div className="info-left">
-            <h2>OVIYA D,19CSR130</h2>
+            <h2>OVIYA D</h2>
+            <h2>19CSR130</h2>
           </div>
-          <div className="timing">
-            <center>
-              <h1 id="count">00:00</h1>
-            </center>
-          </div>
+          <center>
+            <div className="timer-text">
+              <CountdownCircleTimer
+                isPlaying
+                duration={120}
+                colors={[
+                  ["#004777", 0.33],
+                  ["#F7B801", 0.33],
+                  ["#A30000", 0.33],
+                ]}
+              >
+                {({ remainingTime }) => remainingTime}
+              </CountdownCircleTimer>
+            </div>
+          </center>
           <div className="info-right">
             <a href="#" className="next">
               Next &raquo;

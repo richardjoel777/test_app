@@ -91,7 +91,7 @@ class Test extends Component {
             <h2>OVIYA D</h2>
             <h2>19CSR130</h2>
           </div>
-          <div class="timer">
+          <div className="timer">
             <center>
               <p id="countdown">{duration}</p>
             </center>

@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Login from "./components/login";
 import "./App.css";
 import Test from "./components/test";
+import Upload from "./components/upload";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Login}></Route>
           <Route path="/test" component={Test}></Route>
+          <Route path="/upload" component={Upload}></Route>
         </Switch>
       </main>
     );

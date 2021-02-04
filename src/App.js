@@ -9,8 +9,8 @@ class App extends Component {
     return (
       <main>
         <Switch>
-          {/* <Route path="/" component={Login}></Route> */}
-          <Route path="/" component={Test}></Route>
+          <Route path="/" exact component={Login}></Route>
+          <Route path="/test" component={Test}></Route>
         </Switch>
       </main>
     );

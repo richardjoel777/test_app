@@ -6,7 +6,7 @@ class Test extends Component {
     data: [
       {
         _id: "1000",
-        question: "What is the capital of india?",
+        question_txt: "What is the capital of india?",
         answers: [
           {
             opt_id: "001",
@@ -28,7 +28,7 @@ class Test extends Component {
       },
       {
         _id: "2000",
-        question: "Who is our CM",
+        question_txt: "Who is our CM",
         answers: [
           {
             opt_id: "011",
@@ -49,41 +49,51 @@ class Test extends Component {
         ],
       },
     ],
+    student_answers: [],
+    current_answer: {},
     i: 0,
     selectedOption: {},
-    startTime: 0,
     remainingTime: 0,
     duration: 120,
   };
 
+  componentDidMount() {
+    setTimeout(() => this.handleNext(this.state.i), this.state.duration * 1000);
+    setInterval(this.updateCount, 1000);
+  }
   handleNext = (a) => {
     if (this.state.i + 1 >= this.state.data.length) {
       console.log("Exam Finished");
     } else {
       const i = a + 1;
-      this.setState({ duration: 120, i });
+      const duration = 120 + Math.round((this.state.remainingTime * 70) / 100);
+      this.setState({ duration, i });
     }
   };
-  handleSelect = (value) => {
+  handleSelect = (answer, question) => {
     const selectedOption =
-      value.opt_id === this.state.selectedOption.opt_id ? {} : { ...value };
-    this.setState({ selectedOption });
+      answer.opt_id === this.state.selectedOption.opt_id ? {} : { ...answer };
+    const current_answer = this.mapToCurrentAnswer(answer, question);
+    // :(
   };
 
   updateCount = () => {
     const duration = this.state.duration - 1;
-    this.setState({ duration });
+    this.setState({ duration, remainingTime: duration });
   };
 
-  componentDidMount() {
-    setTimeout(() => this.handleNext(this.state.i), 120000);
-    setInterval(this.updateCount, 1000);
+  mapToCurrentAnswer(answer, question) {
+    return {
+      _id: question._id,
+      question_txt: question.question_txt,
+      answer: answer,
+    };
   }
+
   render() {
-    const { data, i, selectedOption, remainingTime, duration } = this.state;
-    const current_question = data[i];
+    const { data, i, selectedOption, duration } = this.state;
+    const current_question = { ...data[i] };
     const answers = [...current_question.answers];
-    console.log(duration, remainingTime);
     return (
       <div>
         <div className="info">
@@ -96,22 +106,35 @@ class Test extends Component {
               <p id="countdown">{duration}</p>
             </center>
           </div>
-          <div className="info-right">
-            <a className="next" onClick={() => this.handleNext(i)}>
-              Next &raquo;
-            </a>
-          </div>
+          {i < data.length - 1 && (
+            <div className="info-right">
+              <a className="next" onClick={() => this.handleNext(i)}>
+                Next &raquo;
+              </a>
+            </div>
+          )}
+          {i == data.length - 1 && (
+            <div className="info-right">
+              <a className="next" onClick={() => {}}>
+                Submit
+              </a>
+            </div>
+          )}
         </div>
-        <div classNameName="body">
+        <div className="body">
           <div className="row">
             <div className="column left">
               <h2>Q.NO {i + 1}</h2>
-              <p>{current_question.question}</p>
+              <p>{current_question.question_txt}</p>
             </div>
             <div className="column right">
               <h2>Options</h2>
               {answers.map((item) => (
-                <div className="col-3" onClick={() => this.handleSelect(item)}>
+                <div
+                  className="col-3"
+                  key={item.opt_id}
+                  onClick={() => this.handleSelect(item, current_question)}
+                >
                   <input
                     name="option"
                     id="cb1"
@@ -120,16 +143,16 @@ class Test extends Component {
                     checked={selectedOption.opt_id === item.opt_id}
                   ></input>
                   <label
-                    for="cd1"
+                    htmlFor="cd1"
                     style={{
-                      "font-size": 20,
+                      fontSize: 20,
                       cursor: "pointer",
-                      "-webkit-touch-callout": "none",
-                      "-webkit-user-select": "none",
-                      "-khtml-user-select": "none",
-                      "-moz-user-select": "none",
-                      "-ms-user-select": "none",
-                      "user-select": "none",
+                      WebkitTouchCallout: "none",
+                      WebkitUserSelect: "none",
+                      KhtmlUserSelect: "none",
+                      MozUserSelect: "none",
+                      msUserSelect: "none",
+                      userSelect: "none",
                     }}
                   >
                     {item.opt_text}

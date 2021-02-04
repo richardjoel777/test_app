@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Login from "./components/login";
 import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 import Test from "./components/test";
 import Upload from "./components/upload";
 

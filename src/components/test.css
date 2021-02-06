@@ -169,6 +169,7 @@ h1 {
 .timer {
   float: left;
   width: 33.33%;
+  margin-top: 40px;
   /*position: center; */
 }
 
@@ -188,4 +189,23 @@ h1 {
     right: 50%;
     top: 50px;
   }
+  a:hover {
+    color: white;
+  }
+}
+
+.container {
+  padding: 50px;
+  border-top: gray;
+}
+.card {
+  margin-top: 100px;
+  width: 500px;
+  margin-left: 300px;
+  text-align: center;
+  font-size: large;
+}
+.card-body {
+  padding: 100px;
+  background-color: rgb(151, 151, 204);
 }

@@ -13,7 +13,11 @@ class Login extends Component {
   render() {
     const { signup_mode } = this.state;
     return (
-      <div className={signup_mode ? "container sign-up-mode" : "container"}>
+      <div
+        className={
+          signup_mode ? "container-login sign-up-mode" : "container-login"
+        }
+      >
         <div className="forms-container">
           <div className="signin-signup">
             <form action="#" className="sign-in-form">
@@ -26,10 +30,9 @@ class Login extends Component {
                 <i className="fas fa-lock"></i>
                 <input type="password" placeholder="Password" />
               </div>
-
               <input type="submit" value="Login" className="btn solid" />
-              <a href="">Forgot password?</a>
             </form>
+
             <form action="#" className="sign-up-form">
               <h2 className="title">Sign up</h2>
 

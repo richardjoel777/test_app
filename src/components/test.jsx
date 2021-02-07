@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "react-countdown-circle-timer";
-import "./test.css";
+import Question_Ans from "./question_ans";
 import Test_Confirm from "./test_confirm";
 
 class Test extends Component {
@@ -135,6 +134,7 @@ class Test extends Component {
     const test_length = data.length;
     const current_question = { ...data[i] };
     const answers = [...current_question.answers];
+    const data_length = data.length;
     return (
       <div>
         {!isStarted && (
@@ -146,84 +146,18 @@ class Test extends Component {
           />
         )}
         {isStarted && (
-          <div>
-            <div className="info">
-              <div className="info-left">
-                <h2>
-                  OVIYA D <br />
-                  19CSR130
-                </h2>
-              </div>
-              <div className="timer">
-                <center>
-                  <p id="countdown">{duration}</p>
-                </center>
-              </div>
-              {i < data.length - 1 && (
-                <div className="info-right">
-                  <a
-                    className="next"
-                    style={{ textDecoration: "none", cursor: "pointer" }}
-                    onClick={() => this.handleNext(i)}
-                  >
-                    Next &raquo;
-                  </a>
-                </div>
-              )}
-              {i == data.length - 1 && (
-                <div className="info-right">
-                  <a
-                    className="next"
-                    style={{ textDecoration: "none", cursor: "pointer" }}
-                    onClick={this.handleSubmit}
-                  >
-                    Submit
-                  </a>
-                </div>
-              )}
-            </div>
-            <div className="body">
-              <div className="row">
-                <div className="column left">
-                  <h2>Q.NO {i + 1}</h2>
-                  <p>{current_question.question_txt}</p>
-                </div>
-                <div className="column right">
-                  <h2>Options</h2>
-                  {answers.map((item) => (
-                    <div
-                      className="col-3"
-                      key={item.opt_id}
-                      onClick={() => this.handleSelect(item, current_question)}
-                    >
-                      <input
-                        name="option"
-                        id="cb1"
-                        type="radio"
-                        className="radio"
-                        checked={selectedOption.opt_id === item.opt_id}
-                      ></input>
-                      <label
-                        htmlFor="cd1"
-                        style={{
-                          fontSize: 20,
-                          cursor: "pointer",
-                          WebkitTouchCallout: "none",
-                          WebkitUserSelect: "none",
-                          KhtmlUserSelect: "none",
-                          MozUserSelect: "none",
-                          msUserSelect: "none",
-                          userSelect: "none",
-                        }}
-                      >
-                        {item.opt_text}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Question_Ans
+            user={student}
+            duration={duration}
+            data_length={data_length}
+            i={i}
+            handleSubmit={this.handleSubmit}
+            current_question={current_question}
+            answers={answers}
+            selectedOption={selectedOption}
+            handleSelect={this.handleSelect}
+            handleNext={this.handleNext}
+          />
         )}
       </div>
     );

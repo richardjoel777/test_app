@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <main>
         <Switch>
-          <Route path="/" exact component={Login}></Route>
+          <Route path="/login" component={Login}></Route>
           <Route path="/test" component={Test}></Route>
           <Route path="/upload" component={Upload}></Route>
         </Switch>

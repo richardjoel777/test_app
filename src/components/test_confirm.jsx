@@ -1,31 +1,36 @@
 import React from "react";
-//import "bootstrap/dist/css/bootstrap.css";
+import "./test_confirm.css";
 const Test_Confirm = ({ onClick, course, test_length, student }) => {
   return (
     <div>
       <center>
-        <p>KONGU ENGINEERING COLLEGE</p>
+        <h1>
+          <b>KONGU ENGINEERING COLLEGE </b>
+        </h1>
       </center>
-      <div class="container">
-        <h5>
+      <div className="container">
+        <h2>
           {student.name} , {student.id}
-        </h5>
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text">
+        </h2>
+        <div className="card">
+          <div className="card-body">
+            <p>
               <b>COURSE CODE: {course.code}</b>
             </p>
-            <p class="card-text">
+            <p>
               <b>COURSE NAME: {course.title}</b>
             </p>
-            <p class="card-text">
+            <p>
               <b>TOTAL QUESTION: {test_length}</b>
             </p>
-            <p class="card-text">
-              <b>TIMING SCHEDULE</b> <br /> Easy: 60 Secs
-              <br /> Hard: 120 Secs
+            <p>
+              <b>TIMING SCHEDULE</b>
+              <br />
+              Easy: 60 Secs
+              <br />
+              Hard: 120 Secs
             </p>
-            <button class="btn btn-primary" onClick={onClick}>
+            <button className="button" onClick={onClick}>
               <b>TAKE TEST</b>
             </button>
           </div>

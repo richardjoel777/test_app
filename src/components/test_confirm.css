@@ -3,7 +3,7 @@ body {
   /*background-image: linear-gradient(rgb(178, 188, 202),rgb(91, 96, 163),rgb(63, 31, 187));*/
   font-family: "Poppins", sans-serif;
 }
-.container {
+.container-confirm {
   padding: 50px;
 }
 hr {

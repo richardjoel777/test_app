@@ -1,6 +1,6 @@
 import React from "react";
 import "./test_confirm.css";
-const Test_Confirm = ({ onClick, course, test_length, student }) => {
+const TestConfirm = ({ onClick, course, test_length, student }) => {
   return (
     <div>
       <center>
@@ -8,7 +8,7 @@ const Test_Confirm = ({ onClick, course, test_length, student }) => {
           <b>KONGU ENGINEERING COLLEGE </b>
         </h1>
       </center>
-      <div className="container">
+      <div className="container-confirm">
         <h2>
           {student.name} , {student.id}
         </h2>
@@ -40,4 +40,4 @@ const Test_Confirm = ({ onClick, course, test_length, student }) => {
   );
 };
 
-export default Test_Confirm;
+export default TestConfirm;

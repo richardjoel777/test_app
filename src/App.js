@@ -10,12 +10,17 @@ import Profile from "./components/profile";
 import "./App.css";
 
 class App extends Component {
+  componentDidMount() {
+    console.log("I'm the user");
+    console.log(this.user);
+  }
+  user = localStorage.getItem("user");
   render() {
     return (
       <main>
         <Switch>
-          <Route path="/login" component={Login}></Route>
           <Route path="/test" component={Test}></Route>
+          <Route path="/login" component={Login}></Route>
           <Route path="/upload" component={Upload}></Route>
           <Route path="/end" exact to component={TestEnd}></Route>
           <Route path="/test_faculty" component={FacultyTest}></Route>

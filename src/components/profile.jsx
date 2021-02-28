@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./profile.css";
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 class Profile extends Component {
   state = {
     data: {},

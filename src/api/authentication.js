@@ -13,7 +13,6 @@ async function saveFaculty(name, email, password) {
     name,
     email,
     password,
-    rollno,
   });
 }
 async function getStudent(rollno) {

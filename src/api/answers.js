@@ -1,11 +1,11 @@
 import Firebase from "../Firebase";
 
-async function uploadAnswers(answers, total, user) {
+async function uploadAnswers(answers, user, total) {
   await Firebase.firestore()
     .collection("test2")
     .doc("doc1")
     .collection("students")
-    .doc(user.id)
+    .doc(user)
     .set({ answers: answers.answers, total: total });
 }
 

@@ -5,6 +5,7 @@ import reg_ico from "../assets/register.svg";
 class Login extends Component {
   state = {
     signup_mode: false,
+    data: {},
   };
   handleSignup = () => {
     const signup_mode = !this.state.signup_mode;

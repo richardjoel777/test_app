@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./question_ans.css";
 import shuffle from "shuffle-array";
+import "./question_ans.css";
 class Question_Ans extends Component {
   state = {
     answers_shuffled: [],
@@ -15,6 +15,7 @@ class Question_Ans extends Component {
       duration,
       handleNext,
       data_length,
+      data,
       i,
       handleSubmit,
       current_question,
@@ -42,7 +43,11 @@ class Question_Ans extends Component {
               <a
                 className="next"
                 style={{ textDecoration: "none", cursor: "pointer" }}
-                onClick={() => handleNext(i)}
+                onClick={() => {
+                  handleNext(i);
+                  const ans = shuffle(data[i + 1].options);
+                  this.setState({ answers_shuffled: ans });
+                }}
               >
                 Next &raquo;
               </a>

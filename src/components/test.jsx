@@ -3,57 +3,9 @@ import QuestionAns from "./question_ans";
 import TestConfirm from "./test_confirm";
 import { getQuestions } from "../api/questions";
 import { uploadAnswers } from "../api/answers";
-
 class Test extends Component {
   state = {
-    data: [
-      // {
-      //   _id: "1000",
-      //   question_txt: "What is the capital of india?",
-      //   type: "1",
-      //   answers: [
-      //     {
-      //       opt_id: "001",
-      //       opt_text: "Delhi",
-      //     },
-      //     {
-      //       opt_id: "002",
-      //       opt_text: "Mumbai",
-      //     },
-      //     {
-      //       opt_id: "003",
-      //       opt_text: "Bihar",
-      //     },
-      //     {
-      //       opt_id: "004",
-      //       opt_text: "Chennai",
-      //     },
-      //   ],
-      // },
-      // {
-      //   _id: "2000",
-      //   question_txt: "Who is our CM",
-      //   type: "0",
-      //   answers: [
-      //     {
-      //       opt_id: "011",
-      //       opt_text: "Jaya",
-      //     },
-      //     {
-      //       opt_id: "012",
-      //       opt_text: "Stalin",
-      //     },
-      //     {
-      //       opt_id: "013",
-      //       opt_text: "OPS",
-      //     },
-      //     {
-      //       opt_id: "014",
-      //       opt_text: "EPS",
-      //     },
-      //   ],
-      // },
-    ],
+    data: [],
     course: {
       code: "18ITC31",
       title: "Digital principle and design",
@@ -135,9 +87,13 @@ class Test extends Component {
         total: total,
         user: student,
       };
-      await uploadAnswers(student_answers_upload, student.id);
+      await uploadAnswers(
+        student_answers_upload,
+        student.id,
+        student_answers_upload.total
+      );
     }
-
+    this.props.history.push("/end");
     // console.log(student_answers);
   };
 
@@ -165,7 +121,7 @@ class Test extends Component {
   async componentDidMount() {
     const data = await getQuestions();
     this.setState({ data });
-    // console.log(data);
+    console.log(data);
   }
 
   render() {
@@ -198,6 +154,7 @@ class Test extends Component {
             duration={duration}
             data_length={data_length}
             i={i}
+            data={data}
             handleSubmit={this.handleSubmit}
             current_question={current_question}
             current_answer={current_answer}

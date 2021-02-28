@@ -1,0 +1,55 @@
+.body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(195, 198, 241);
+}
+.container-profile {
+  margin-top: 20px;
+  padding: 30px;
+}
+.stud {
+  border-radius: 10px;
+  border: 5px solid black;
+  margin-top: 70px;
+  margin-left: 410px;
+  margin-right: 420px;
+  background-color: rgb(122, 128, 212);
+}
+.fa fa-user {
+  margin-left: 450px;
+}
+input {
+  width: 70%;
+  height: 30px;
+  margin: 10px 0;
+  background-color: rgb(203, 213, 238);
+  padding: 0 20px;
+  font-size: medium;
+  border: 2px solid black;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+label {
+  font-size: 1.1rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: 5px;
+}
+.button {
+  font-size: 18px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: 10px 25px;
+  cursor: pointer;
+  background-color: rgb(65, 65, 204);
+  color: white;
+  margin-top: 30px;
+  margin-left: 15px;
+}
+.button:hover {
+  color: black;
+}
+
+.stud-con {
+  padding: 30px;
+
+  margin-top: 10px;
+}

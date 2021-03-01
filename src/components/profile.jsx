@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NativeSelect } from "@material-ui/core";
 import "./profile.css";
 //import "bootstrap/dist/css/bootstrap.css";
 class Profile extends Component {
@@ -13,9 +14,64 @@ class Profile extends Component {
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
     data[input.name] = input.value;
+    if (input.name === "year") this.setState({ year: input.value });
+    if (input.name === "dept") this.setState({ dept: input.value });
+    if (input.name === "sec") this.setState({ sec: input.value });
     this.setState({ data });
+    console.log(input.value);
   };
+  year = [
+    {
+      value: "I",
+      label: "I Year",
+    },
+    {
+      value: "II",
+      label: "II Year",
+    },
+    {
+      value: "III",
+      label: "III Year",
+    },
+    {
+      value: "IV",
+      label: "IV Year",
+    },
+  ];
+  dept = [
+    {
+      value: "CSE",
+    },
+    {
+      value: "IT",
+    },
+    {
+      value: "EEE",
+    },
+    {
+      value: "ECE",
+    },
+    {
+      value: "CIVIL",
+    },
+    {
+      value: "FT",
+    },
+    {
+      value: "MECH",
+    },
+    {
+      value: "CHE",
+    },
+    {
+      value: "BSC",
+    },
+  ];
+
+  sec = ["A", "B", "C", "D", "E"];
   render() {
+    const { year, dept, sec } = this.state;
+    console.log(this.state);
     return (
       <div className="body">
         <h1>
@@ -54,32 +110,53 @@ class Profile extends Component {
                 <br />
                 <label>YEAR:</label>
                 <br />
-                <input
-                  type="select"
-                  name="year"
+                <NativeSelect
+                  value={year}
                   onChange={this.handleChange}
+                  name="year"
+                  type="select"
                   required
-                />
+                  style={{ backgroundColor: "white", color: "black" }}
+                >
+                  <option aria-label="None" value="" />
+                  {this.year.map((y) => (
+                    <option value={y.value}>{y.label}</option>
+                  ))}
+                </NativeSelect>
                 <br />
                 <br />
                 <label>DEPARTMENT:</label>
                 <br />
-                <input
-                  type="text"
-                  name="department"
+                <NativeSelect
+                  value={dept}
                   onChange={this.handleChange}
+                  name="dept"
+                  type="select"
                   required
-                />
+                  style={{ backgroundColor: "white", color: "black" }}
+                >
+                  <option aria-label="None" value="" />
+                  {this.dept.map((d) => (
+                    <option value={d.value}>{d.value}</option>
+                  ))}
+                </NativeSelect>
                 <br />
                 <br />
                 <label>SECTION:</label>
                 <br />
-                <input
-                  type="text"
-                  name="section"
+                <NativeSelect
+                  value={sec}
                   onChange={this.handleChange}
+                  name="sec"
+                  type="select"
                   required
-                />
+                  style={{ backgroundColor: "white", color: "black" }}
+                >
+                  <option aria-label="None" value="" />
+                  {this.sec.map((s) => (
+                    <option value={s}>{s}</option>
+                  ))}
+                </NativeSelect>
                 <br />
                 <br />
                 <button type="submit" className="button">

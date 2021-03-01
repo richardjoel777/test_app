@@ -55,7 +55,7 @@ class Profile extends Component {
                 <label>YEAR:</label>
                 <br />
                 <input
-                  type="text"
+                  type="select"
                   name="year"
                   onChange={this.handleChange}
                   required

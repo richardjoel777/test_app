@@ -36,7 +36,7 @@ class Login extends Component {
   render() {
     const { signup_mode } = this.state;
     return (
-      <div className={signup_mode ? "container sign-up-mode" : "container"}>
+      <div className={signup_mode ? "container-l sign-up-mode" : "container-l"}>
         <div className="forms-container">
           <div className="signin-signup">
             <form

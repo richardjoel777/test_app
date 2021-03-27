@@ -16,17 +16,21 @@ async function addQuestion(data) {
   });
 }
 async function getQuestions() {
-  var questions = [];
-  var snapshot = await Firebase.firestore()
-    .collection("test2")
-    .doc("doc1")
-    .collection("questions")
-    .get();
-  snapshot.docs.forEach((e) =>
-    questions.push({ ...e.data(), ...{ question_id: e.id } })
-  );
-  console.log(questions);
-  return questions;
+  try {
+    var questions = [];
+    var snapshot = await Firebase.firestore()
+      .collection("test2")
+      .doc("doc1")
+      .collection("questions")
+      .get();
+    snapshot.docs.forEach((e) =>
+      questions.push({ ...e.data(), ...{ question_id: e.id } })
+    );
+    console.log("bye", questions);
+    return questions;
+  } catch (ex) {
+    console.log("Error", ex);
+  }
 }
 
 //utility functions

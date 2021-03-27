@@ -39,6 +39,7 @@ class Test extends Component {
 
   handleNext = (a) => {
     const { data, current_answer, remainingTime } = this.state;
+    if (!current_answer.answer) return;
     if (current_answer.answer.opt_id === "001") {
       const total = this.state.total + data[this.state.i].points;
       this.setState({ total });
@@ -79,6 +80,11 @@ class Test extends Component {
         total: total,
         user: student,
       };
+      await uploadAnswers(
+        student_answers_upload,
+        student.id,
+        student_answers_upload.total
+      );
       console.log(student_answers_upload);
     } else {
       const total = this.state.total;
@@ -93,6 +99,7 @@ class Test extends Component {
         student_answers_upload.total
       );
     }
+
     this.props.history.push("/end");
     // console.log(student_answers);
   };
@@ -119,9 +126,13 @@ class Test extends Component {
   }
 
   async componentDidMount() {
-    const data = await getQuestions();
-    this.setState({ data });
-    console.log(data);
+    try {
+      const data = await getQuestions();
+      this.setState({ data });
+      console.log("hi", data);
+    } catch (ex) {
+      window.alert("Something went wrong");
+    }
   }
 
   render() {

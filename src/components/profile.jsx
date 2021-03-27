@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NativeSelect } from "@material-ui/core";
+import { saveStudent } from "../api/authentication";
 import "./profile.css";
 //import "bootstrap/dist/css/bootstrap.css";
 class Profile extends Component {
@@ -7,9 +8,11 @@ class Profile extends Component {
     data: {},
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     console.log(this.state.data);
+    await saveStudent(this.state.data);
+    this.props.history.replace("/");
   };
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };

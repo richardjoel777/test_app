@@ -8,7 +8,8 @@ import FacultyTest from "./components/faculty_test";
 import TestList from "./components/test_list";
 import Profile from "./components/profile";
 import "./App.css";
-
+import TestsTable from "./components/testsTable";
+import TestTable from "./components/test_table";
 class App extends Component {
   componentDidMount() {
     console.log("I'm the user");
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/test_faculty" component={FacultyTest}></Route>
           <Route path="/tests" to component={TestList}></Route>
           <Route path="/profile" to component={Profile}></Route>
+          <Route path="/test_table" to component={TestTable}></Route>
         </Switch>
       </main>
     );

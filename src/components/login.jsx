@@ -20,6 +20,7 @@ class Login extends Component {
     }
     try {
       await signUp(e.email.value, e.password.value);
+      this.props.history.replace("/");
     } catch (error) {
       alert(error.message);
     }
@@ -29,6 +30,7 @@ class Login extends Component {
     var e = v.target;
     try {
       await signIn(e.email.value, e.password.value);
+      this.props.history.replace("/");
     } catch (error) {
       alert(error.message);
     }

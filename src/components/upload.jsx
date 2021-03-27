@@ -30,7 +30,7 @@ class Upload extends Component {
           </form>
         </div>
         <button onClick={() => getQuestions()}>Click me</button>
-        <button
+        {/* <button
           onClick={() =>
             uploadAnswers(
               { questionId1: "optid", questionId2: "optid2" },
@@ -40,7 +40,7 @@ class Upload extends Component {
           }
         >
           Upload Answers
-        </button>
+        </button> */}
       </div>
     );
   }

@@ -7,6 +7,7 @@ class Question_Ans extends Component {
   };
   componentDidMount() {
     const answers_shuffled = shuffle(this.props.answers);
+    console.log(this.props.current_answer);
     this.setState({ answers_shuffled });
   }
   render() {

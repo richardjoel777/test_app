@@ -1,12 +1,14 @@
 import Firebase from "../Firebase";
 
-async function saveStudent(name, email, password, rollno) {
-  await Firebase.firestore().collection("students").doc(rollno).set({
-    name,
-    email,
-    password,
-    rollno,
+async function saveStudent(data) {
+  await Firebase.firestore().collection("students").doc(data.roll).set({
+    name: data.username,
+    roll: data.roll,
+    sec: data.sec,
+    year: data.year,
+    dept: data.dept,
   });
+  window.alert("Profile saved successfully");
 }
 async function saveFaculty(name, email, password) {
   await Firebase.firestore().collection("faculty").doc(email).set({
@@ -46,7 +48,6 @@ async function signIn(email, password) {
   );
   localStorage.setItem("user", userCred);
   console.log(userCred);
-  await saveStudent("Richard", "email@ml", "alskd", "19csr157");
 }
 
-export { signIn, signUp };
+export { signIn, signUp, saveStudent };

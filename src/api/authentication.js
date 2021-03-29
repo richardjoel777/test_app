@@ -1,21 +1,32 @@
 import Firebase from "../Firebase";
 
 async function saveStudent(data) {
-  await Firebase.firestore().collection("students").doc(data.roll).set({
-    name: data.username,
-    roll: data.roll,
-    sec: data.sec,
-    year: data.year,
-    dept: data.dept,
-  });
+  await Firebase.firestore()
+    .collection("data")
+    .doc("users")
+    .collection("students")
+    .doc(data.roll)
+    .set({
+      name: data.username,
+      roll: data.roll,
+      sec: data.sec,
+      year: data.year,
+      dept: data.dept,
+    });
   window.alert("Profile saved successfully");
 }
-async function saveFaculty(name, email, password) {
-  await Firebase.firestore().collection("faculty").doc(email).set({
-    name,
-    email,
-    password,
-  });
+async function saveFaculty() {
+  var name = "Good Guru";
+  var email = "mathsguru.sh@kongu.edu";
+  await Firebase.firestore()
+    .collection("data")
+    .doc("users")
+    .collection("faculty")
+    .doc(email)
+    .set({
+      name,
+      email,
+    });
 }
 async function getStudent(rollno) {
   var snapshot = await Firebase.firestore()
@@ -50,4 +61,4 @@ async function signIn(email, password) {
   console.log(userCred);
 }
 
-export { signIn, signUp, saveStudent };
+export { signIn, signUp, saveStudent, saveFaculty };

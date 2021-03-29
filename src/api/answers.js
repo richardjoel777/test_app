@@ -1,12 +1,14 @@
 import Firebase from "../Firebase";
 
-async function uploadAnswers(answers, user, total) {
-  console.log("Hello there");
+async function uploadAnswers(answers, user, test_id) {
+  console.log("Test id in upload answers ", test_id);
   console.log("inside upload", answers);
   await Firebase.firestore()
-    .collection("test2")
-    .doc("doc1")
-    .collection("students")
+    .collection("data")
+    .doc("tests")
+    .collection("II-CSE-C")
+    .doc(test_id)
+    .collection("student_answers")
     .doc(user)
     .set({ answers: answers.answers, total: answers.total });
 }

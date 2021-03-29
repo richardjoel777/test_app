@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NativeSelect } from "@material-ui/core";
-import { saveStudent } from "../api/authentication";
+import { saveStudent, saveFaculty } from "../api/authentication";
 import "./profile.css";
 //import "bootstrap/dist/css/bootstrap.css";
 class Profile extends Component {
@@ -77,6 +77,9 @@ class Profile extends Component {
     console.log(this.state);
     return (
       <div className="body">
+        <button className="btn btn-success" onClick={saveFaculty}>
+          Save faculty
+        </button>
         <h1>
           <b>
             <center>KONGU ENGINEERING COLLEGE</center>

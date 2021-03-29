@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <main>
         <Switch>
-          <Route path="/test" component={Test}></Route>
+          <Route path="/test/:id" component={Test}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/upload" component={Upload}></Route>
           <Route path="/end" exact to component={TestEnd}></Route>

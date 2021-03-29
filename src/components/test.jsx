@@ -22,6 +22,7 @@ class Test extends Component {
     remainingTime: 0,
     duration: 120,
     total: 0,
+    test_id: "",
     answers_upload: {},
   };
 
@@ -80,10 +81,11 @@ class Test extends Component {
         total: total,
         user: student,
       };
+      console.log("Test id inside finish ", this.props.match.params.id);
       await uploadAnswers(
         student_answers_upload,
         student.id,
-        student_answers_upload.total
+        this.props.match.params.id
       );
       console.log(student_answers_upload);
     } else {
@@ -91,12 +93,12 @@ class Test extends Component {
       const student_answers_upload = {
         answers: student_answers,
         total: total,
-        user: student,
       };
+      console.log("Test id inside finish ", this.props.match.params.id);
       await uploadAnswers(
         student_answers_upload,
         student.id,
-        student_answers_upload.total
+        this.props.match.params.id
       );
     }
 
@@ -126,8 +128,10 @@ class Test extends Component {
   }
 
   async componentDidMount() {
+    const test_id = this.props.match.params.id;
+    this.setState({ test_id });
     try {
-      const data = await getQuestions();
+      const data = await getQuestions(test_id);
       this.setState({ data });
       console.log("hi", data);
     } catch (ex) {
@@ -145,6 +149,7 @@ class Test extends Component {
       course,
       student,
       current_answer,
+      test_id,
     } = this.state;
     const test_length = data.length;
     const current_question = { ...data[i] };

@@ -1,20 +1,35 @@
 import React, { Component } from "react";
-import { addQuestion, getQuestions } from "../api/questions";
+import {
+  addQuestion,
+  editQuestion,
+  getQuestions,
+  getTestDetails,
+} from "../api/questions";
 import "./faculty_test.css";
 class FacultyTest extends Component {
   state = {
     data: [],
+    test_details: {},
     new_opt: "",
+    test_id: "",
     changeClicked: false,
     current_index: 0,
   };
 
   onSubmit = async (e, item) => {
+    const { test_details } = this.state;
     e.preventDefault();
     const new_opt = this.state.new_opt;
     let data = [...this.state.data];
     const index = data.indexOf(item);
     data[index].options[0].opt_text = new_opt;
+    const cls = `${test_details.year}-${test_details.dept}-${test_details.sec}`;
+    await editQuestion(
+      this.state.test_id,
+      cls,
+      data[index].question_id,
+      data[index].options
+    );
     this.setState({ data, changeClicked: false });
     //await addQuestion(data);
   };
@@ -30,16 +45,20 @@ class FacultyTest extends Component {
   };
 
   async componentDidMount() {
+    const test_id = this.props.match.params.id;
     try {
-      const data = await getQuestions();
+      const data = await getQuestions(test_id);
+      const test_details = await getTestDetails(test_id);
       console.log(data);
-      this.setState({ data });
+      console.log("test info", test_details);
+      this.setState({ data, test_details });
     } catch (ex) {
       window.alert(ex.message);
     }
+    this.setState({ test_id });
   }
   render() {
-    const { data, changeClicked } = this.state;
+    const { data, changeClicked, test_details } = this.state;
     return (
       <div>
         <div className="info-f">
@@ -50,13 +69,13 @@ class FacultyTest extends Component {
             <h2>
               K.DINESH
               <br />
-              OBJECT ORIENTED PROGRAMMING
+              {test_details.name}
               <br />
-              18CST33
+              {test_details.subject_code}
             </h2>
           </div>
           <div className="timing-f">
-            <h2>NO OF QUESTIONS : 15</h2>
+            <h2>NO OF QUESTIONS : {data.length}</h2>
             <h2>DURATION : 30 MINS</h2>
           </div>
         </div>

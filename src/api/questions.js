@@ -19,6 +19,22 @@ async function addQuestion(data, test_id) {
     test_id
   );
 }
+
+async function editQuestion(test_id, cls, question_id, new_opt) {
+  try {
+    await Firebase.firestore()
+      .collection("data")
+      .doc("tests")
+      .collection(cls)
+      .doc(test_id)
+      .collection("questions")
+      .doc(question_id)
+      .set({ options: new_opt });
+  } catch (ex) {
+    console.log(ex);
+  }
+}
+
 async function getQuestions(test_id) {
   try {
     var questions = [];
@@ -51,6 +67,20 @@ async function addTestDetails(data, cls, test_id) {
       dept: data.dept,
     });
 }
+async function getTestDetails(test_id) {
+  try {
+    const test_details = await Firebase.firestore()
+      .collection("data")
+      .doc("tests")
+      .collection("II-CSE-C")
+      .doc(test_id)
+      .get();
+    if (test_details) return test_details.data();
+    return null;
+  } catch (ex) {
+    console.log(ex.message);
+  }
+}
 //utility functions
 function getOption(index, txt) {
   return { opt_id: "00" + index.toString(), opt_text: txt };
@@ -65,4 +95,10 @@ async function addToFirebase(data, test_id) {
     .add(data);
 }
 
-export { addQuestion, addTestDetails, getQuestions };
+export {
+  addQuestion,
+  addTestDetails,
+  getQuestions,
+  getTestDetails,
+  editQuestion,
+};

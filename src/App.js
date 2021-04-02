@@ -10,6 +10,7 @@ import Profile from "./components/profile";
 import "./App.css";
 import TestsTable from "./components/testsTable";
 import TestTable from "./components/test_table";
+import NotFound from "./components/not-found";
 class App extends Component {
   componentDidMount() {
     console.log("I'm the user");
@@ -24,10 +25,12 @@ class App extends Component {
           <Route path="/login" component={Login}></Route>
           <Route path="/upload" component={Upload}></Route>
           <Route path="/end" exact to component={TestEnd}></Route>
-          <Route path="/test_faculty" component={FacultyTest}></Route>
+          <Route path="/test_faculty/:id" component={FacultyTest}></Route>
           <Route path="/tests" to component={TestList}></Route>
+          <Route path="/not-found" component={NotFound}></Route>
           <Route path="/profile" to component={Profile}></Route>
           <Route path="/test_table" to component={TestTable}></Route>
+          <Redirect to="/not-found"></Redirect>
         </Switch>
       </main>
     );

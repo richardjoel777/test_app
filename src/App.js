@@ -11,6 +11,9 @@ import "./App.css";
 import TestsTable from "./components/testsTable";
 import TestTable from "./components/test_table";
 import NotFound from "./components/not-found";
+import UploadPage from "./components/upload_page";
+import DatePage from "./components/date";
+import Home from "./home";
 class App extends Component {
   componentDidMount() {
     console.log("I'm the user");
@@ -19,20 +22,21 @@ class App extends Component {
   user = localStorage.getItem("user");
   render() {
     return (
-      <main>
-        <Switch>
-          <Route path="/test/:id" component={Test}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/upload" component={Upload}></Route>
-          <Route path="/end" exact to component={TestEnd}></Route>
-          <Route path="/test_faculty/:id" component={FacultyTest}></Route>
-          <Route path="/tests" to component={TestList}></Route>
-          <Route path="/not-found" component={NotFound}></Route>
-          <Route path="/profile" to component={Profile}></Route>
-          <Route path="/test_table" to component={TestTable}></Route>
-          <Redirect to="/not-found"></Redirect>
-        </Switch>
-      </main>
+      <Switch>
+        <Route path="/test/:id" component={Test}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/upload" component={Upload}></Route>
+        <Route path="/upload_test" component={UploadPage}></Route>
+        <Route path="/end" exact to component={TestEnd}></Route>
+        <Route path="/test_faculty/:id" component={FacultyTest}></Route>
+        <Route path="/tests" to component={TestList}></Route>
+        <Route path="/not-found" component={NotFound}></Route>
+        <Route path="/profile" to component={Profile}></Route>
+        <Route path="/test_table" to component={TestTable}></Route>
+        <Route path="/date" to component={DatePage}></Route>
+        <Route exact path="/" to component={Home}></Route>
+        <Redirect to="/not-found"></Redirect>
+      </Switch>
     );
   }
 }

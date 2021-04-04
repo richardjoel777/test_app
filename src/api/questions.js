@@ -54,17 +54,31 @@ async function getQuestions(test_id) {
     console.log("Error", ex);
   }
 }
-async function addTestDetails(data, cls, test_id) {
+async function addTestDetails(
+  testname,
+  sec,
+  year,
+  dept,
+  course,
+  coursecode,
+  datetime,
+  cls,
+  test_id
+) {
+  console.log("Inside add test details");
   await Firebase.firestore()
     .collection("data")
     .doc("tests")
     .collection(cls)
     .doc(test_id)
     .set({
-      name: data.name,
-      sec: data.sec,
-      year: data.year,
-      dept: data.dept,
+      name: testname,
+      sec: sec,
+      year: year,
+      dept: dept,
+      course: course,
+      coursecode: coursecode,
+      datetime: datetime,
     });
 }
 async function getTestDetails(test_id) {

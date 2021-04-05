@@ -1,9 +1,21 @@
 import React, { Component } from "react";
+import { checkAuth } from "../api/authentication";
+import { getTests } from "../api/questions";
 import List from "./List";
 import Table1 from "./Table1";
 import "./test_table.css";
 class TestTable extends Component {
-  state = {};
+  state = {
+    tests: [],
+  };
+
+  async componentDidMount() {
+    const email = checkAuth();
+    const tests = await getTests(email);
+    this.setState({ tests });
+    console.log("final list", tests);
+  }
+
   render() {
     return (
       <div
@@ -17,7 +29,7 @@ class TestTable extends Component {
               <List />
             </div>
             <div class="Table">
-              <Table1 />
+              <Table1 tests={this.state.tests} />
             </div>
           </div>
         </div>

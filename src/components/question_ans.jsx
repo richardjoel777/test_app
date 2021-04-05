@@ -31,7 +31,7 @@ class Question_Ans extends Component {
           <div className="info-left">
             <h2>
               {user.name} <br />
-              {user.id}
+              {user.roll}
             </h2>
           </div>
           <div className="timer">

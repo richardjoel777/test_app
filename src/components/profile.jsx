@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NativeSelect } from "@material-ui/core";
-import { saveStudent, saveFaculty } from "../api/authentication";
+import { saveStudent, checkAuth } from "../api/authentication";
 import "./profile.css";
 //import "bootstrap/dist/css/bootstrap.css";
 class Profile extends Component {
@@ -11,12 +11,12 @@ class Profile extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     console.log(this.state.data);
-    await saveStudent(this.state.data);
+    await saveStudent(this.state.data, checkAuth());
     this.props.history.replace("/");
   };
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
-    data[input.name] = input.value;
+    data[input.name] = input.value.toUpperCase();
     if (input.name === "year") this.setState({ year: input.value });
     if (input.name === "dept") this.setState({ dept: input.value });
     if (input.name === "sec") this.setState({ sec: input.value });
@@ -77,9 +77,6 @@ class Profile extends Component {
     console.log(this.state);
     return (
       <div className="body">
-        <button className="btn btn-success" onClick={saveFaculty}>
-          Save faculty
-        </button>
         <h1>
           <b>
             <center>KONGU ENGINEERING COLLEGE</center>

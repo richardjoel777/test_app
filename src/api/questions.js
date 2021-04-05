@@ -14,18 +14,18 @@ async function addQuestion(data, test_id) {
       question_txt: question_txt,
       options: options,
       points: points,
-      isHard: true,
+      isHard: data[6].toLowerCase() === "true",
     },
     test_id
   );
 }
 
-async function editQuestion(test_id, cls, question_id, new_opt) {
+async function editQuestion(test_id, question_id, new_opt) {
   try {
     await Firebase.firestore()
       .collection("data")
       .doc("tests")
-      .collection(cls)
+      .collection("tests")
       .doc(test_id)
       .collection("questions")
       .doc(question_id)
@@ -41,19 +41,40 @@ async function getQuestions(test_id) {
     var snapshot = await Firebase.firestore()
       .collection("data")
       .doc("tests")
-      .collection("II-CSE-C")
+      .collection("tests")
       .doc(test_id)
       .collection("questions")
       .get();
     snapshot.docs.forEach((e) =>
       questions.push({ ...e.data(), ...{ question_id: e.id } })
     );
-    console.log("bye", questions);
+    //console.log("bye", questions);
     return questions;
   } catch (ex) {
     console.log("Error", ex);
   }
 }
+
+async function getStudentAnswers(test_id) {
+  try {
+    var student_answers = [];
+    var snapshot = await Firebase.firestore()
+      .collection("data")
+      .doc("tests")
+      .collection("tests")
+      .doc(test_id)
+      .collection("student_answers")
+      .get();
+    snapshot.docs.forEach((e) =>
+      student_answers.push({ ...e.data(), ...{ student_id: e.id } })
+    );
+    //console.log("bye", student_answers);
+    return student_answers;
+  } catch (ex) {
+    console.log("Error", ex);
+  }
+}
+
 async function addTestDetails(
   testname,
   sec,
@@ -62,22 +83,27 @@ async function addTestDetails(
   course,
   coursecode,
   datetime,
+  faculty,
+  facultyname,
   cls,
   test_id
 ) {
-  console.log("Inside add test details");
+  //console.log("Inside add test details");
   await Firebase.firestore()
     .collection("data")
     .doc("tests")
-    .collection(cls)
+    .collection("tests")
     .doc(test_id)
     .set({
       name: testname,
       sec: sec,
       year: year,
       dept: dept,
+      cls: cls,
       course: course,
       coursecode: coursecode,
+      faculty: faculty,
+      facultyname: facultyname,
       datetime: datetime,
     });
 }
@@ -86,7 +112,7 @@ async function getTestDetails(test_id) {
     const test_details = await Firebase.firestore()
       .collection("data")
       .doc("tests")
-      .collection("II-CSE-C")
+      .collection("tests")
       .doc(test_id)
       .get();
     if (test_details) return test_details.data();
@@ -103,10 +129,46 @@ async function addToFirebase(data, test_id) {
   await Firebase.firestore()
     .collection("data")
     .doc("tests")
-    .collection("II-CSE-C")
+    .collection("tests")
     .doc(test_id)
     .collection("questions")
     .add(data);
+}
+
+async function getTests(faculty) {
+  var tests = [];
+  var snapshot = await Firebase.firestore()
+    .collection("data")
+    .doc("tests")
+    .collection("tests")
+    .get();
+  snapshot.docs.forEach((e) =>
+    tests.push({ ...e.data(), ...{ test_id: e.id } })
+  );
+  var res = tests.filter((test) => test.faculty === faculty);
+  var ans = [];
+  return await Promise.all(
+    res.map((test) => {
+      try {
+        return mapTests(test);
+      } catch (ex) {
+        throw ex;
+      }
+    })
+  );
+}
+
+async function mapTests(test) {
+  var student_answers = await getStudentAnswers(test.test_id);
+  var questions = await getQuestions(test.test_id);
+  var res = {
+    test: test,
+    isCompleted: test.datetime >= Date.now(),
+    student_answers: student_answers,
+    questions: questions,
+  };
+  console.log("Map ", res);
+  return res;
 }
 
 export {
@@ -115,4 +177,5 @@ export {
   getQuestions,
   getTestDetails,
   editQuestion,
+  getTests,
 };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./login.css";
 import log_ico from "../assets/log.svg";
 import reg_ico from "../assets/register.svg";
-import { signIn, signUp } from "../api/authentication";
+import { checkAuth, signIn, signUp } from "../api/authentication";
 class Login extends Component {
   state = {
     signup_mode: false,
@@ -12,14 +12,22 @@ class Login extends Component {
     const signup_mode = !this.state.signup_mode;
     this.setState({ signup_mode });
   };
+  hasNumber(myString) {
+    return /\d/.test(myString);
+  }
+
   handleSignupForm = async (v) => {
     v.preventDefault();
     var e = v.target;
     if (e.password.value !== e.confirm_password.value) {
       return alert("Passwords doesn't match");
     }
+    if (!e.email.value.includes("kongu")) {
+      return alert("Use Kongu Id");
+    }
     try {
-      await signUp(e.email.value, e.password.value);
+      await signUp(e.name.value, e.email.value, e.password.value);
+      if (this.hasNumber(e.email.value)) this.props.history.push("/profile");
       this.props.history.replace("/");
     } catch (error) {
       alert(error.message);
@@ -35,6 +43,14 @@ class Login extends Component {
       alert(error.message);
     }
   };
+
+  componentDidMount() {
+    var user = checkAuth();
+    console.log("hi user", user);
+    if (user) {
+      this.props.history.replace("/");
+    }
+  }
   render() {
     const { signup_mode } = this.state;
     return (
@@ -65,7 +81,10 @@ class Login extends Component {
               onSubmit={this.handleSignupForm}
             >
               <h2 className="title">Sign up</h2>
-
+              <div className="input-field">
+                <i className="fas fa-envelope"></i>
+                <input type="text" name="name" placeholder="Name" />
+              </div>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input type="email" name="email" placeholder="Email" />
@@ -82,17 +101,6 @@ class Login extends Component {
                   placeholder="Confirm Password"
                 />
               </div>
-
-              <label for="Faculty">
-                <input
-                  type="checkbox"
-                  id="Faculty"
-                  name="Faculty"
-                  value="Staff"
-                />{" "}
-                Yes, I'm a faculty{" "}
-              </label>
-
               <input type="submit" className="btn" value="Sign up" />
             </form>
           </div>

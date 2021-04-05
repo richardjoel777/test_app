@@ -4,6 +4,7 @@ import { addQuestion, getQuestions, addTestDetails } from "../api/questions";
 import DateTimePicker from "react-datetime-picker";
 import classes from "./upload.module.css";
 import Firebase from "../Firebase";
+import { checkAuth, getFaculty } from "../api/authentication";
 const formField = {
   testname: "TestName  ",
   placeholder: "",
@@ -69,6 +70,8 @@ class UploadPage extends Component {
         typeD: [datetime],
       },
     ];
+    const email = checkAuth();
+    const faculty_name = await getFaculty(email);
     const cls = `${this.state.year.toUpperCase()}-${this.state.dept.toUpperCase()}-${this.state.sec.toUpperCase()}`;
     await addTestDetails(
       testname,
@@ -78,12 +81,16 @@ class UploadPage extends Component {
       course,
       coursecode,
       datetime,
+      email,
+      faculty_name.name,
       cls,
       this.state.test_id
     );
     this.setState({
       Credentials: true,
     });
+    window.alert("Test uploaded successfully!");
+    this.props.history.push("/tests");
   };
   render() {
     return (

@@ -1,26 +1,24 @@
 import React, { Component } from "react";
 import QuestionAns from "./question_ans";
 import TestConfirm from "./test_confirm";
-import { getQuestions } from "../api/questions";
+import { getQuestions, getTestDetails } from "../api/questions";
 import { uploadAnswers } from "../api/answers";
+import { checkAuth, getStudent } from "../api/authentication";
 class Test extends Component {
   state = {
     data: [],
     course: {
-      code: "18ITC31",
-      title: "Digital principle and design",
+      code: "",
+      title: "",
     },
-    student: {
-      id: "19CSR157",
-      name: "S.PRIYADHARSHINI",
-    },
+    student: {},
     isStarted: false,
     student_answers: [],
     current_answer: {},
     i: 0,
     selectedOption: {},
     remainingTime: 0,
-    duration: 120,
+    duration: 60,
     total: 0,
     test_id: "",
     answers_upload: {},
@@ -47,7 +45,8 @@ class Test extends Component {
       console.log(total);
     }
     const i = a + 1;
-    const duration = 120 + Math.round((remainingTime * 70) / 100);
+    const duration =
+      (data[i].isHard ? 120 : 60) + Math.round((remainingTime * 70) / 100);
     this.setState({ duration, i });
     const student_answers =
       this.state.student_answers === []
@@ -66,6 +65,7 @@ class Test extends Component {
 
   handleSubmit = async () => {
     const { current_answer, i, data, student } = this.state;
+    console.log(student);
     const student_answers =
       this.state.student_answers === []
         ? [current_answer]
@@ -84,7 +84,7 @@ class Test extends Component {
       console.log("Test id inside finish ", this.props.match.params.id);
       await uploadAnswers(
         student_answers_upload,
-        student.id,
+        student.roll,
         this.props.match.params.id
       );
       console.log(student_answers_upload);
@@ -94,10 +94,10 @@ class Test extends Component {
         answers: student_answers,
         total: total,
       };
-      console.log("Test id inside finish ", this.props.match.params.id);
+      //console.log("Test id inside finish ", this.props.match.params.id);
       await uploadAnswers(
         student_answers_upload,
-        student.id,
+        student.roll,
         this.props.match.params.id
       );
     }
@@ -132,8 +132,17 @@ class Test extends Component {
     this.setState({ test_id });
     try {
       const data = await getQuestions(test_id);
-      this.setState({ data });
-      console.log("hi", data);
+      const test_details = await getTestDetails(test_id);
+      const course = {
+        code: test_details.coursecode,
+        title: test_details.course,
+      };
+      const email = checkAuth();
+      const student = await getStudent(email);
+      console.log(student);
+      const duration = data[this.state.i].isHard ? 120 : 60;
+      this.setState({ data, course, duration, student });
+      //console.log("hi", data);
     } catch (ex) {
       window.alert("Something went wrong");
     }
@@ -156,7 +165,8 @@ class Test extends Component {
     const data_length = data.length;
     return (
       <div>
-        {!isStarted && (
+        {!isStarted && data.length < 0 && <h1>Loading</h1>}
+        {!isStarted && data.length > 0 && (
           <TestConfirm
             course={course}
             length={test_length}

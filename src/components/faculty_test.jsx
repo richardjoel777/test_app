@@ -26,7 +26,6 @@ class FacultyTest extends Component {
     const cls = `${test_details.year}-${test_details.dept}-${test_details.sec}`;
     await editQuestion(
       this.state.test_id,
-      cls,
       data[index].question_id,
       data[index].options
     );

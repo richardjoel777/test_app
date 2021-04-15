@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CSVReader from "react-csv-reader";
 import { addQuestion, getQuestions, addTestDetails } from "../api/questions";
-import DateTimePicker from "react-datetime-picker";
+import DateTimePicker from "react-date-picker";
 import classes from "./upload.module.css";
 import Firebase from "../Firebase";
 import { checkAuth, getFaculty } from "../api/authentication";
@@ -49,6 +49,8 @@ class UploadPage extends Component {
   handleDate = (datetime) => {
     this.setState({ datetime });
   };
+
+  
 
   handleSubmit = async (event) => {
     console.log("hi");
@@ -105,7 +107,7 @@ class UploadPage extends Component {
           >
             <h2>UPLOAD TEST</h2>
             <br></br>
-            {formField.testname}
+            <div className={classes.lable}> {formField.testname}</div>
             <div>
               <input
                 type="text"
@@ -116,7 +118,7 @@ class UploadPage extends Component {
               ></input>
             </div>
             <br></br>
-            {formField.dept}
+            <div className={classes.lable}>{formField.dept}</div>
             <select
               id="department"
               name="dept"
@@ -134,7 +136,7 @@ class UploadPage extends Component {
               <option value="FT">FT</option>
             </select>
             <br></br>
-            {formField.year}
+            <div className={classes.lable}>{formField.year}</div>
             <select
               id="year"
               name="year"
@@ -148,7 +150,7 @@ class UploadPage extends Component {
               <option value="IV">IV</option>
             </select>
             <br></br>
-            {formField.sec}
+            <div className={classes.lable}>{formField.sec}</div>
             <select
               id="section"
               name="sec"
@@ -162,7 +164,7 @@ class UploadPage extends Component {
               <option value="D">D</option>
             </select>
             <br></br>
-            {formField.course_code}
+            <div className={classes.lable}>{formField.course_code}</div>
             <div>
               <input
                 type="text"
@@ -173,8 +175,9 @@ class UploadPage extends Component {
               ></input>
             </div>
             <br></br>
-            {formField.course}
+            
             <div>
+            <div className={classes.lable}>{formField.course}</div>
               <input
                 type="text"
                 name="course"
@@ -184,24 +187,20 @@ class UploadPage extends Component {
               ></input>
             </div>
             <br></br>
-            {formField.dueDate}
-            <div>
-              <DateTimePicker
-                onChange={this.handleDate}
-                value={this.state.datetime}
-              />
-            </div>
+            {formField.dueDate}<div ><input type="datetime-local" name="datetime" value={this.state.datetime} onChange={this.handleDate} className={classes.datetime}></input></div>
+
             <br></br>
-            <button type="submit">
-              UPLOAD FILE
-              <CSVReader
-                className={classes.CSVReader}
-                style={"visibility:hidden"}
+            <br />
+            <button className={classes.csvBtn} >
+            <CSVReader
+                style={"visibility:hidden;"}
                 onFileLoaded={(data, fileInfo) => this.handleCSV(data)}
+                label="UPLOAD FILE"
                 // onFileLoaded={(data, fileInfo) => console.dir(data, fileInfo)}
-              />
+                inputStyle={{visibility:'hidden',cursor:'pointer',fontweight:'500'}}
+              hidden></CSVReader>
             </button>
-            <br></br>
+             
             <button
               type="submit"
               value="submit"

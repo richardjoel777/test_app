@@ -8,7 +8,7 @@ class TestEnd extends Component {
       <p className={styles.head}>KONGU ENGINEERING COLLEGE</p>
         <div className={styles.disp}>
           <h1 className={styles.discription}>Test is Successfully Submitted!</h1><br/>
-          <button className={styles.btn}>RETURN HOME</button>
+          <button className={styles.btn} onClick={() =>this.props.history.push("/")>RETURN HOME</button>
       </div>
     </div>
     );

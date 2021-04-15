@@ -25,9 +25,11 @@ input {
   height: 100%;
   top: 0;
   left: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .signin-signup {
+  font-family: "Poppins", sans-serif;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -41,6 +43,7 @@ input {
 
 form {
   display: flex;
+  font-family: "Poppins", sans-serif;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -67,6 +70,7 @@ form.sign-in-form {
 }
 
 .input-field {
+  text-align: left;
   max-width: 380px;
   width: 100%;
   background-color: #f0f0f0;
@@ -75,26 +79,29 @@ form.sign-in-form {
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
+  padding: 5px;
   position: relative;
 }
 
 .input-field i {
-  text-align: center;
-  line-height: 55px;
+  line-height: 40px;
   color: #acacac;
   transition: 0.5s;
   font-size: 1.1rem;
 }
 
 .input-field input {
+  font-family: "Poppins", sans-serif;
+  text-align: left;
   background: none;
   outline: none;
   border: none;
-  line-height: 1;
+  line-height: -1px;
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  width: 100%;
+  padding: 5px;
 }
 
 .input-field input::placeholder {
@@ -134,21 +141,24 @@ form.sign-in-form {
 
 .btn {
   width: 150px;
-  background-color: rgb(143, 110, 196);
   border: none;
   outline: none;
   height: 49px;
   border-radius: 49px;
   color: #fff;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 900;
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn:hover {
   background-color: #7f54e2;
+  font-size: 18px;
+  transition: 0.3s;
+
 }
 .panels-container {
   position: absolute;
@@ -159,7 +169,13 @@ form.sign-in-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
+.container-l img {
+  position: relative;
+  width: 80%;
+  background-color: transparent;
+  overflow: hidden;
+ top: 1px;
+}
 .container-l:before {
   content: "";
   position: absolute;
@@ -179,9 +195,10 @@ form.sign-in-form {
 }
 
 .image {
-  width: 100%;
+  width: 50%;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
+  top:250px;
 }
 
 .panel {
@@ -232,7 +249,7 @@ form.sign-in-form {
 
 .right-panel .image,
 .right-panel .content {
-  transform: translateX(800px);
+  transform: translateX(1500px);
 }
 
 /* ANIMATION */
@@ -265,12 +282,11 @@ form.sign-in-form {
 .container-l.sign-up-mode .right-panel .content {
   transform: translateX(0%);
 }
-
 .container-l.sign-up-mode .left-panel {
   pointer-events: none;
 }
 
-.container-l.sign-up-mode .right-panel {
+.container-l.sign-up-mode .right-panel ,.left-panel img{
   pointer-events: all;
 }
 
@@ -313,7 +329,7 @@ form.sign-in-form {
   }
 
   .image {
-    width: 200px;
+    width: 100%;
     transition: transform 0.9s ease-in-out;
     transition-delay: 0.6s;
   }

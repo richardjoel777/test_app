@@ -1,11 +1,18 @@
 import React from "react";
 import { getTests } from "../api/questions";
-
+import bg from './stu 1.jpg';
+import style from './test_code.module.css'
 const Home = () => {
   return (
-    <button onClick={() => localStorage.removeItem("TestAppUser")}>
-      click me
-    </button>
+
+    <div className="test_end">
+    <img src={bg} alt="bg" ></img>
+    <div className={style.blog}>
+        <p className={style.disc}>Enter The Test Code!</p>
+        <input type="text" className={style.input}></input>
+        <button type="submit" className={style.btn} onClick={() => localStorage.removeItem("TestAppUser")}>GO!</button>
+    </div>
+</div>
   );
 };
 

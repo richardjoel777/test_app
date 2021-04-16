@@ -77,11 +77,7 @@ class Profile extends Component {
     console.log(this.state);
     return (
       <div className="body">
-        <h1>
-          <b>
-            <center>KONGU ENGINEERING COLLEGE</center>
-          </b>
-        </h1>
+        <h1 className="handing">KONGU ENGINEERING COLLEGE</h1>
         <div className="container-profile">
           <center>
             <h1>

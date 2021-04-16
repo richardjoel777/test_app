@@ -35,7 +35,9 @@ class TestTable extends Component {
           </div>
         </div>
         <Link to="/upload">
-          <button className="btn btn-primary">Create New Test</button>
+          <div class="fixed-bottom">
+          <button className="btn btn-primary" style={{Bottom:"0px"}}>Create New Test</button>
+          </div>
         </Link>
       </div>
     );

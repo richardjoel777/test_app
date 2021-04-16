@@ -28,7 +28,7 @@ class Login extends Component {
     try {
       await signUp(e.name.value, e.email.value, e.password.value);
       if (this.hasNumber(e.email.value)) this.props.history.push("/profile");
-      this.props.history.replace("/");
+      //this.props.history.replace("/");
     } catch (error) {
       alert(error.message);
     }

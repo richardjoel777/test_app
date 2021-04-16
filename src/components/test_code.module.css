@@ -51,6 +51,7 @@ img{
 .btn{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background: #fff;
+    margin-left:5px;
     border-radius: 20px;
     padding: 5px;
     width: 150px;

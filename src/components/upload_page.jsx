@@ -4,6 +4,7 @@ import { addQuestion, getQuestions, addTestDetails } from "../api/questions";
 import DateTimePicker from "react-date-picker";
 import classes from "./upload.module.css";
 import Firebase from "../Firebase";
+import ParticlesBg from "particles-bg";
 import { checkAuth, getFaculty } from "../api/authentication";
 const formField = {
   testname: "TestName  ",
@@ -94,6 +95,8 @@ class UploadPage extends Component {
   };
   render() {
     return (
+      <body style={{backgroundColor:"transparent",position:"relative"}}>
+       <ParticlesBg  num={300} type="cobweb"   bg={true}  />
       <div className={classes.App}>
         <h1 className={classes.handing}>KONGU ENGINEERING COLLEGE</h1>
         <div className={classes.blogCard}>
@@ -224,6 +227,7 @@ class UploadPage extends Component {
           </form>
         </div>
       </div>
+</body>
     );
   }
 }

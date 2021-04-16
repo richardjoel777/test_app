@@ -185,17 +185,16 @@ class UploadPage extends Component {
               ></input>
             </div>
             <br></br>
-            {formField.dueDate}
+            <div className={classes.lable}>{formField.dueDate}</div>
             <div>
               <input
                 type="datetime-local"
                 name="datetime"
                 value={this.state.datetime}
-                onChange={this.handleDate}
+                onChange={this.change}
                 className={classes.datetime}
               ></input>
             </div>
-
             <br></br>
             <br />
             <button className={classes.csvBtn}>

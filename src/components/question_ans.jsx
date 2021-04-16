@@ -29,7 +29,7 @@ class Question_Ans extends Component {
       <div>
         <div className="info">
           <div className="info-left">
-            <h2>
+            <h2 style={{textAlign:'left',fontFamily:'"Poppins", sans-serif',fontWeight:500,fontSize:40}}>
               {user.name} <br />
               {user.roll}
             </h2>
@@ -61,7 +61,7 @@ class Question_Ans extends Component {
                 style={{ textDecoration: "none", cursor: "pointer" }}
                 onClick={handleSubmit}
               >
-                Submit
+                  SUBMIT
               </a>
             </div>
           )}
@@ -69,11 +69,11 @@ class Question_Ans extends Component {
         <div className="body">
           <div className="row">
             <div className="column left">
-              <h2>Q.NO {i + 1}</h2>
-              <p>{current_question.question_txt}</p>
+              <h2 style={{textAlign:'left',fontFamily: '"Poppins", sans-serif',fontWeight:600}}>Q.NO {i + 1}</h2>
+              <p style={{fontFamily:'"Poppins", sans-serif',fontWeight:400,fontSize:30,textAlign:'left'}}>{current_question.question_txt}</p>
             </div>
             <div className="column right">
-              <h2>Options</h2>
+              <h2 style={{textAlign:'left',fontFamily:'"Poppins", sans-serif',fontWeight:600,padding:20}}>OPTIONS</h2>
               {this.state.answers_shuffled.map((item) => (
                 <div
                   className="col-3"
@@ -95,7 +95,10 @@ class Question_Ans extends Component {
                   <label
                     htmlFor="cd1"
                     style={{
-                      fontSize: 20,
+                      fontSize: 25,
+                      marginLeft:10,
+                      fontWeight: 500,
+                      fontFamily:'"Poppins", sans-serif',
                       cursor: "pointer",
                       WebkitTouchCallout: "none",
                       WebkitUserSelect: "none",

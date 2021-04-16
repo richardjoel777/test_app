@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { checkAuth } from "../api/authentication";
 import { getTests } from "../api/questions";
+import { Link } from "react-router-dom";
 import List from "./List";
 import Table1 from "./Table1";
 import "./test_table.css";
@@ -33,6 +34,9 @@ class TestTable extends Component {
             </div>
           </div>
         </div>
+        <Link to="/upload">
+          <button className="btn btn-primary">Create New Test</button>
+        </Link>
       </div>
     );
   }

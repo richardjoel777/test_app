@@ -38,7 +38,8 @@ class Login extends Component {
     var e = v.target;
     try {
       await signIn(e.email.value, e.password.value);
-      this.props.history.replace("/");
+      if (this.hasNumber(e.email.value)) this.props.history.push("/");
+      this.props.history.replace("/tests");
     } catch (error) {
       alert(error.message);
     }

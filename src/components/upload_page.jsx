@@ -50,8 +50,6 @@ class UploadPage extends Component {
     this.setState({ datetime });
   };
 
-  
-
   handleSubmit = async (event) => {
     console.log("hi");
     event.preventDefault();
@@ -91,7 +89,7 @@ class UploadPage extends Component {
     this.setState({
       Credentials: true,
     });
-    window.alert("Test uploaded successfully!");
+    window.alert(`Enter this code to attend test ${this.state.test_id}`);
     this.props.history.push("/tests");
   };
   render() {
@@ -175,9 +173,9 @@ class UploadPage extends Component {
               ></input>
             </div>
             <br></br>
-            
+
             <div>
-            <div className={classes.lable}>{formField.course}</div>
+              <div className={classes.lable}>{formField.course}</div>
               <input
                 type="text"
                 name="course"
@@ -187,20 +185,34 @@ class UploadPage extends Component {
               ></input>
             </div>
             <br></br>
-            {formField.dueDate}<div ><input type="datetime-local" name="datetime" value={this.state.datetime} onChange={this.handleDate} className={classes.datetime}></input></div>
+            {formField.dueDate}
+            <div>
+              <input
+                type="datetime-local"
+                name="datetime"
+                value={this.state.datetime}
+                onChange={this.handleDate}
+                className={classes.datetime}
+              ></input>
+            </div>
 
             <br></br>
             <br />
-            <button className={classes.csvBtn} >
-            <CSVReader
+            <button className={classes.csvBtn}>
+              <CSVReader
                 style={"visibility:hidden;"}
                 onFileLoaded={(data, fileInfo) => this.handleCSV(data)}
                 label="UPLOAD FILE"
                 // onFileLoaded={(data, fileInfo) => console.dir(data, fileInfo)}
-                inputStyle={{visibility:'hidden',cursor:'pointer',fontweight:'500'}}
-              hidden></CSVReader>
+                inputStyle={{
+                  visibility: "hidden",
+                  cursor: "pointer",
+                  fontweight: "500",
+                }}
+                hidden
+              ></CSVReader>
             </button>
-             
+
             <button
               type="submit"
               value="submit"

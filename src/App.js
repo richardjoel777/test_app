@@ -34,10 +34,10 @@ class App extends Component {
         {/* <Route path="/upload" component={Upload}></Route> */}
         {/* <Route path="/upload_test" component={UploadPage}></Route> */}
         <Route path="/end" exact to component={TestEnd}></Route>
-        <FacultyProtectedRoute
-          path="/test_faculty/:id"
+        {/* <FacultyProtectedRoute
+          path="/edit-test/:id"
           component={FacultyTest}
-        ></FacultyProtectedRoute>
+        ></FacultyProtectedRoute> */}
         {/* <Route path="/tests" to component={TestList}></Route> */}
         <Route path="/not-found" component={NotFound}></Route>
         {/* <Route path="/profile" to component={Profile}></Route>

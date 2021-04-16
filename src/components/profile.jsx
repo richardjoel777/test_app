@@ -90,6 +90,7 @@ class Profile extends Component {
                 <label>STUDENT NAME:</label>
                 <br />
                 <input
+                style={{outline: 'none'}}
                   type="text"
                   name="username"
                   onChange={this.handleChange}
@@ -100,6 +101,7 @@ class Profile extends Component {
                 <label>ROLL NO.</label>
                 <br />
                 <input
+                 style={{outline: 'none'}}
                   type="text"
                   name="roll"
                   onChange={this.handleChange}
@@ -115,7 +117,7 @@ class Profile extends Component {
                   name="year"
                   type="select"
                   required
-                  style={{ backgroundColor: "rgb(203, 213, 238)", color: "black",border: "2px solid black",borderRadius: "10px",width:"70%",height:"45px" }}
+                  style={{outline: 'none', backgroundColor: "rgb(203, 213, 238)", color: "black",border: "2px solid black",borderRadius: "10px",width:"70%",height:"45px" }}
                 >
                   <option aria-label="None" value="" />
                   {this.year.map((y) => (
@@ -132,7 +134,7 @@ class Profile extends Component {
                   name="dept"
                   type="select"
                   required
-                  style={{ backgroundColor: "rgb(203, 213, 238)", color: "black",border: "2px solid black",borderRadius: "10px",width:"70%",height:"45px" }}
+                  style={{outline: 'none', backgroundColor: "rgb(203, 213, 238)", color: "black",border: "2px solid black",borderRadius: "10px",width:"70%",height:"45px" }}
                 >
                   <option aria-label="None" value="" />
                   {this.dept.map((d) => (
@@ -149,7 +151,7 @@ class Profile extends Component {
                   name="sec"
                   type="select"
                   required
-                  style={{ backgroundColor: "rgb(203, 213, 238)", color: "black",border: "2px solid black",borderRadius: "10px",width:"70%",height:"45px" }}
+                  style={{outline: 'none', backgroundColor: "rgb(203, 213, 238)", color: "black",border: "2px solid black",borderRadius: "10px",width:"70%",height:"45px" }}
                 >
                   <option aria-label="None" value="" />
                   {this.sec.map((s) => (

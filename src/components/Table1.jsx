@@ -52,7 +52,7 @@ class Table1 extends Component {
                   {test.test.name}
                 </td>
                 <td>{test.test.cls}</td>
-                <td>{test.test.datetime.toDate().toDateString()}</td>
+                <td>{test.test.datetime}</td>
                 <td>{test.student_answers.length}</td>
                 <td>{test.isCompleted ? "Yes" : "No"}</td>
                 <Button

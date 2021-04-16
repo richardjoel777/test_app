@@ -98,7 +98,7 @@ class Profile extends Component {
                 />
                 <br />
                 <br />
-                <label>ROLL NO.</label>
+                <label>ROLL NO:</label>
                 <br />
                 <input
                  style={{outline: 'none'}}

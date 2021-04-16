@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import bg from "./stu 1.jpg";
+import bg from "./stud 4.jpg";
 import style from "./test_code.module.css";
 
 const Home = withRouter(({ history }) => (

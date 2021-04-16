@@ -55,7 +55,7 @@ class Question_Ans extends Component {
             </div>
           )}
           {i == data_length - 1 && (
-            <div className="info-right">
+            <div className="info-right" style={{marginBottom:10}}>
               <a
                 className="next"
                 style={{ textDecoration: "none", cursor: "pointer" }}
